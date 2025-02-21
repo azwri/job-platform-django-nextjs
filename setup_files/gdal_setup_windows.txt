@@ -1,0 +1,16 @@
+Download and install GDAL:-
+https://www.lfd.uci.edu/~gohlke/pythonlibs/#gdal
+
+
+
+GDAL & GEOS PATHS:-
+
+VIRTUAL_ENV_BASE = os.environ['VIRTUAL_ENV']
+GEOS_LIBRARY_PATH = VIRTUAL_ENV_BASE + '/Lib/site-packages/osgeo/geos_c.dll'
+GDAL_LIBRARY_PATH = VIRTUAL_ENV_BASE + '/Lib/site-packages/osgeo/gdal304.dll'
+
+
+GeoDjango Installation from Documentation:-
+https://docs.djangoproject.com/en/4.0/ref/contrib/gis/install/
+
+

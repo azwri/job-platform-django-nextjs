@@ -15,4 +15,7 @@ VENEV_DIR = os.environ.get('VIRTUAL_ENV', None)
 for window:
 GDAL_LIBRARY_PATH = f'{VENEV_DIR}/Lib/site-packages/osgeo/gdal.dll'
 GEOS_LIBRARY_PATH = f'{VENEV_DIR}/Lib/site-packages/osgeo/geos_c.dll'
-C:\Users\azwri\AppData\Local\Temp
+
+- downlaod OSGeo4W
+https://trac.osgeo.org/osgeo4w/
+https://docs.djangoproject.com/en/5.1/ref/contrib/gis/install/
