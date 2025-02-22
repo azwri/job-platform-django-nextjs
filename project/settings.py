@@ -144,21 +144,20 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# for windows
-# VENEV_DIR = os.environ.get('VIRTUAL_ENV', None)
-# GDAL_LIBRARY_PATH = f'{VENEV_DIR}/Lib/site-packages/osgeo/gdal.dll'
-# GEOS_LIBRARY_PATH = f'{VENEV_DIR}/Lib/site-packages/osgeo/geos_c.dll'
-GDAL_LIBRARY_PATH = 'C:/OSGeo4W/bin/gdal310.dll'
-GEOS_LIBRARY_PATH = 'C:/OSGeo4W/bin/geos_c.dll'
+if os.name == 'nt':
+    GDAL_LIBRARY_PATH = 'C:/OSGeo4W/bin/gdal310.dll'
+    GEOS_LIBRARY_PATH = 'C:/OSGeo4W/bin/geos_c.dll'
+elif os.name == 'posix':
+    if os.uname().sysname == 'Darwin':  # macOS
+        GDAL_LIBRARY_PATH = '/opt/homebrew/Cellar/gdal/3.10.2/lib/libgdal.dylib'
+        GEOS_LIBRARY_PATH = '/opt/homebrew/Cellar/geos/3.13.0/lib/libgeos_c.dylib'
+    else:  # Linux
+        GDAL_LIBRARY_PATH = '/usr/lib/libgdal.so.20'
+        GEOS_LIBRARY_PATH = '/usr/lib/libgeos_c.so.1'
+else:
+    raise Exception('Unsupported OS')
 
 
 
-# for linux
-# GDAL_LIBRARY_PATH = '/usr/lib/libgdal.so.20'
-# GEOS_LIBRARY_PATH = '/usr/lib/libgeos_c.so.1'
 
-# for mac
-# GDAL_LIBRARY_PATH = os.environ.get('GDAL_LIBRARY_PATH')
-# GEOS_LIBRARY_PATH = os.environ.get('GEOS_LIBRARY_PATH')
-
-GEOCODING_URI = os.environ.get('GEOCOCDING_URI')
+GEOCODER_API = os.environ.get('GEOCODER_API')
