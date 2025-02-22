@@ -19,3 +19,8 @@ GEOS_LIBRARY_PATH = f'{VENEV_DIR}/Lib/site-packages/osgeo/geos_c.dll'
 - downlaod OSGeo4W
 https://trac.osgeo.org/osgeo4w/
 https://docs.djangoproject.com/en/5.1/ref/contrib/gis/install/
+
+for mac:
+brew install gdal geos
+export GDAL_LIBRARY_PATH=/opt/homebrew/lib/libgdal.dylib 
+export GEOS_LIBRARY_PATH=/opt/homebrew/lib/libgeos_c.dylib

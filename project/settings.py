@@ -42,6 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.gis', # Add this line for GeoDjango
+    'rest_framework',
+    'corsheaders',
+    'storages',
+    'django_filters',
+
+    'job.apps.JobConfig',
 ]
 
 MIDDLEWARE = [
@@ -138,7 +144,21 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-VENEV_DIR = os.environ.get('VIRTUAL_ENV', None)
+# for windows
+# VENEV_DIR = os.environ.get('VIRTUAL_ENV', None)
+# GDAL_LIBRARY_PATH = f'{VENEV_DIR}/Lib/site-packages/osgeo/gdal.dll'
+# GEOS_LIBRARY_PATH = f'{VENEV_DIR}/Lib/site-packages/osgeo/geos_c.dll'
+GDAL_LIBRARY_PATH = 'C:/OSGeo4W/bin/gdal310.dll'
+GEOS_LIBRARY_PATH = 'C:/OSGeo4W/bin/geos_c.dll'
 
-GDAL_LIBRARY_PATH = f'{VENEV_DIR}/Lib/site-packages/osgeo/gdal.dll'
-GEOS_LIBRARY_PATH = f'{VENEV_DIR}/Lib/site-packages/osgeo/geos_c.dll'
+
+
+# for linux
+# GDAL_LIBRARY_PATH = '/usr/lib/libgdal.so.20'
+# GEOS_LIBRARY_PATH = '/usr/lib/libgeos_c.so.1'
+
+# for mac
+# GDAL_LIBRARY_PATH = os.environ.get('GDAL_LIBRARY_PATH')
+# GEOS_LIBRARY_PATH = os.environ.get('GEOS_LIBRARY_PATH')
+
+GEOCODING_URI = os.environ.get('GEOCOCDING_URI')
