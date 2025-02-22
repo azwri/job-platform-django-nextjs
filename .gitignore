@@ -16,7 +16,7 @@ env.bak/
 venv.bak/
 
 # Django migrations
-*/migrations/*
+# */migrations/*
 
 # IDEs
 .vscode/
