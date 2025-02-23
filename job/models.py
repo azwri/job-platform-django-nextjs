@@ -38,7 +38,7 @@ class Experience(models.TextChoices):
 
 
 class Job(models.Model):
-    title = models.CharField(max_length=100, null=True, blank=True)
+    title = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
     address = models.CharField(max_length=100, null=True, blank=True)
@@ -58,6 +58,7 @@ class Job(models.Model):
     is_featured = models.BooleanField(default=False)
     is_verified = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
+    is_soft_deleted = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
@@ -72,4 +73,4 @@ class Job(models.Model):
             self.point = Point(g.lng, g.lat)
             print(self.point)
         super(Job, self).save(*args, **kwargs)
-    
+        
