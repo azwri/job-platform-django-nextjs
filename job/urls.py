@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import get_all_jobs, get_job, create_job, update_job, delete_job, destroy_job
+from .views import get_all_jobs, get_job, create_job, update_job, delete_job, destroy_job, get_topic_search
 
 app_name = 'job'
 
@@ -10,5 +10,6 @@ urlpatterns = [
     path('jobs/update/<int:pk>/', update_job, name='update_job'),
     path('jobs/delete/<int:pk>/', delete_job, name='delete_job'),
     path('jobs/destroy/<int:pk>/', destroy_job, name='destroy_job'),
+    path('stats/<str:topic>/', get_topic_search, name='get_topic_search'),
     
 ]
