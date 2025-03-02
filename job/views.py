@@ -5,13 +5,19 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import Sum, Avg, Count, Min, Max
+from .filters import JobFilter
+from rest_framework.pagination import PageNumberPagination
 
 
 @api_view(['GET'])
 def get_all_jobs(request):
-    jobs = Job.objects.filter(is_soft_deleted=False)
-    serializer = JobSerializer(jobs, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    resPerPage = 3
+    paginator = PageNumberPagination()
+    paginator.page_size = resPerPage
+    jobs = JobFilter(request.GET, queryset=Job.objects.filter(is_soft_deleted=False).order_by('id')).qs
+    result_page = paginator.paginate_queryset(jobs, request)
+    serializer = JobSerializer(result_page, many=True)
+    return paginator.get_paginated_response(serializer.data)
 
 
 @api_view(['GET'])
