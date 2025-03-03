@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 import os
 from dotenv import load_dotenv
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'django_filters',
 
     'job.apps.JobConfig',
+    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [
@@ -161,3 +163,17 @@ else:
 
 
 GEOCODER_API = os.environ.get('GEOCODER_API')
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+}
+
